@@ -363,6 +363,7 @@ int get_rec_by_non_ndx_key(void *key, void *rec, int (*matcher)(void *rec, void 
 
         int temp_key;
         int i=0;
+        int f=0;
 
         while(1 == 1) // always true
         {            
@@ -384,7 +385,7 @@ int get_rec_by_non_ndx_key(void *key, void *rec, int (*matcher)(void *rec, void 
 
             if(key_read == 0 || rec_read == 0)
             {
-                return PDS_FILE_ERROR;
+                break;
             }
             else
             {
@@ -393,15 +394,20 @@ int get_rec_by_non_ndx_key(void *key, void *rec, int (*matcher)(void *rec, void 
                     if(temp_data->is_deleted==0)
                     {
                         *io_count = i+1;
-                        return PDS_SUCCESS;
-                    }
-                    else
-                    {
-                        return PDS_REC_NOT_FOUND;
+                        f=1;
                     }
                 }
                 i++;
             }
+        }
+
+        if(f==1)
+        {
+            return PDS_SUCCESS;
+        }
+        else
+        {
+            return PDS_REC_NOT_FOUND;
         }
         return PDS_REC_NOT_FOUND;
     }

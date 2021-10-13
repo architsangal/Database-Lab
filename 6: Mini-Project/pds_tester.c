@@ -49,14 +49,14 @@ int add_book_main()
     {
         if (isdigit(temp_id[i]) == 0)
 		{
-			printf("Must contain digits only");
+			printf("\n\n\n\n				Must contain digits only");
 			return add_book_main();
 		}
     }
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
-		printf("Minimum length should be 2 and maximum length should be 7");
+		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return add_book_main();
 	}
 
@@ -94,14 +94,14 @@ int search_book_by_ID_main()
     {
         if (isdigit(temp_id[i]) == 0)
 		{
-			printf("Must contain digits only");
+			printf("\n\n\n\n				Must contain digits only");
 			return search_book_by_ID_main();
 		}
     }
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
-		printf("Minimum length should be 2 and maximum length should be 7");
+		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return search_book_by_ID_main();
 	}
 
@@ -159,14 +159,14 @@ int delete_book_by_unique_id_main()
     {
         if (isdigit(temp_id[i]) == 0)
 		{
-			printf("Must contain digits only");
+			printf("\n\n\n\n				Must contain digits only");
 			return delete_book_by_unique_id_main();
 		}
     }
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
-		printf("Minimum length should be 2 and maximum length should be 7");
+		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return delete_book_by_unique_id_main();
 	}
 
@@ -199,14 +199,14 @@ int update_book_student_info(int isGivenToStudent)
     {
         if (isdigit(temp_id[i]) == 0)
 		{
-			printf("Must contain digits only");
+			printf("\n\n\n\n				Must contain digits only");
 			return update_book_student_info(isGivenToStudent);
 		}
     }
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
-		printf("Minimum length should be 2 and maximum length should be 7");
+		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return update_book_student_info(isGivenToStudent);
 	}
 
@@ -338,7 +338,10 @@ void input_request()
 		if(status == BOOK_SUCCESS)
 			printf("\n\n\n\n				PDS Closed\n\n\n");
 		else
-			printf("\n\n\n\n				Not able to close PDS\n\n\n");
+		{
+			printf("\n\n\n\n				");
+			printErrors(status);
+		}
 	}
 
 	if(result == 0)
