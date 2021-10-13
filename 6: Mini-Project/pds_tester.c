@@ -36,7 +36,6 @@ void printErrors(int errorCode)
 
 int add_book_main()
 {
-	clear();
 	char temp_id[30];
 	struct Book book_temp;
 
@@ -49,6 +48,7 @@ int add_book_main()
     {
         if (isdigit(temp_id[i]) == 0)
 		{
+			clear();
 			printf("\n\n\n\n				Must contain digits only");
 			return add_book_main();
 		}
@@ -56,6 +56,7 @@ int add_book_main()
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
+		clear();
 		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return add_book_main();
 	}
@@ -83,7 +84,6 @@ int add_book_main()
 
 int search_book_by_ID_main()
 {
-	clear();
 	char temp_id[30];
 	struct Book book_temp;
 
@@ -94,6 +94,7 @@ int search_book_by_ID_main()
     {
         if (isdigit(temp_id[i]) == 0)
 		{
+			clear();
 			printf("\n\n\n\n				Must contain digits only");
 			return search_book_by_ID_main();
 		}
@@ -101,6 +102,7 @@ int search_book_by_ID_main()
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
+		clear();
 		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return search_book_by_ID_main();
 	}
@@ -148,8 +150,6 @@ int search_book_by_book_name_main()
 
 int delete_book_by_unique_id_main()
 {
-
-	clear();
 	char temp_id[30];
 
 	printf("\n\n\n			Enter the Book Unique Number (Max length:7; Min length:2) : ");
@@ -159,6 +159,7 @@ int delete_book_by_unique_id_main()
     {
         if (isdigit(temp_id[i]) == 0)
 		{
+			clear();
 			printf("\n\n\n\n				Must contain digits only");
 			return delete_book_by_unique_id_main();
 		}
@@ -166,6 +167,7 @@ int delete_book_by_unique_id_main()
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
+		clear();
 		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return delete_book_by_unique_id_main();
 	}
@@ -188,7 +190,6 @@ int delete_book_by_unique_id_main()
 
 int update_book_student_info(int isGivenToStudent)
 {
-	clear();
 	char temp_id[30];
 	struct Book book_temp;
 
@@ -199,6 +200,7 @@ int update_book_student_info(int isGivenToStudent)
     {
         if (isdigit(temp_id[i]) == 0)
 		{
+			clear();
 			printf("\n\n\n\n				Must contain digits only");
 			return update_book_student_info(isGivenToStudent);
 		}
@@ -206,6 +208,7 @@ int update_book_student_info(int isGivenToStudent)
 
 	if(!(strlen(temp_id)>=2 && strlen(temp_id)<=7))
 	{
+		clear();
 		printf("\n\n\n\n				Minimum length should be 2 and maximum length should be 7");
 		return update_book_student_info(isGivenToStudent);
 	}
@@ -308,10 +311,12 @@ void input_request()
 	}
 	else if(option_selected == 3)
 	{
+		clear();
 		result = add_book_main();
 	}
 	else if(option_selected == 4)
 	{
+		clear();
 		result = search_book_by_ID_main();		
 	}
 	else if(option_selected == 5)
@@ -320,14 +325,17 @@ void input_request()
 	}
 	else if(option_selected == 6)
 	{
+		clear();
 		result = delete_book_by_unique_id_main();
 	}
 	else if(option_selected == 7)
 	{
+		clear();
 		result = update_book_student_info(1);
 	}
 	else if(option_selected == 8)
 	{
+		clear();
 		result = update_book_student_info(0);
 	}
 	else if(option_selected == 9)

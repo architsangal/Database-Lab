@@ -7,10 +7,11 @@
 #include "bst.h"
 
 struct PDS_RepoInfo repo_handle;
-
+int first = 0;
 
 int pds_create(char *repo_name) 
 {
+  int first = 1;
   char filename[30], indexfile[30];
   strcpy(filename,repo_name);
   strcpy(indexfile,repo_name);
@@ -18,7 +19,7 @@ int pds_create(char *repo_name)
   strcat(indexfile,".ndx");
   FILE *fp = fopen(filename,"wb+");
   FILE *ifp = fopen(indexfile,"wb+");
-  if(fp  == NULL || ifp == NULL) return PDS_FILE_ERROR;\
+  if(fp  == NULL || ifp == NULL) return PDS_FILE_ERROR;
   fclose(fp);
   fclose(ifp);
 
@@ -31,6 +32,11 @@ int pds_create(char *repo_name)
 
 int pds_open(char* repo_name, int rec_size) // Same as before
 {
+    if(first == 0)
+    {
+        first = 1;
+        repo_handle.repo_status = PDS_REPO_CLOSED;
+    }
     if(repo_handle.repo_status != PDS_REPO_CLOSED)
     {
         return PDS_REPO_ALREADY_OPEN;
