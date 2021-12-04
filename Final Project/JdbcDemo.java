@@ -25,7 +25,7 @@ public class JdbcDemo
             BufferedReader br = new BufferedReader(in);
             System.out.print("\nWant to continue? [Y/N]:");
             String input = br.readLine();
-            if(input.equals("N"))
+            if(input.equals("N")||input.equals("n"))
             {
                 System.exit(0);
             }
@@ -215,15 +215,16 @@ public class JdbcDemo
         System.out.println("\n\n\n\n\n\n");
 
         println("Choice from the available options- ");
-        println("1. List of available books");
-        println("2. Issue a book");
-        println("3. Return a book");
-        println("4. Add a student");
-        println("5. Add a library manager");
-        println("6. Add a book");
-        println("7. Delete a book");
-        println("8. Delete a student account");
-        println("9. Delete your account");
+        println("1.  List of available books");
+        println("2.  Issue a book");
+        println("3.  Return a book");
+        println("4.  Add a student");
+        println("5.  Add a library manager");
+        println("6.  Add a book");
+        println("7.  Delete a book");
+        println("8.  Delete a student account");
+        println("9.  Delete your account");
+        println("10. List of all books");
         println("0. Log Out");
         print("Enter your choice: ");
         int input = Integer.parseInt(br.readLine());
@@ -246,17 +247,66 @@ public class JdbcDemo
         else if(input == 8)
             delete_a_student(stmt,br);
         else if(input == 9)
+        {
             delete_a_manager(stmt,br);
+            return;
+        }
+        else if(input == 10)
+            list_of_books2(stmt, br);
         else if(input == 0)
             return;
         manager_choices(stmt, br);
     }
 
+    static void list_of_books2(Statement stmt,BufferedReader br) throws IOException
+    {
+        clear();
+        String books = "select * from book";
+        ResultSet rs = executeSqlCommand(books, stmt);
+        
+        try
+        {
+            println("List of Available books:\n");
+            int f=0;
+            while(rs.next())
+            {
+                f=1;
+                //Retrieve by column name
+                String id  = rs.getString("book_id");
+                String name = rs.getString("book_name");
+                String author = rs.getString("book_name");
+                String student_rno = rs.getString("student_rno");
+                String admin_roll_number = rs.getString("admin_roll_number");
+            
+                //Display values
+                println("Book ID  : " + id);
+                println("Book Name: " + name);
+                println("Author : " + author);
+                println("Student Roll No. : " + student_rno);
+                println("Admin Number : " + admin_roll_number);
+                println("");
+            }
+
+            if(f==0)
+            {
+                println("Sorry, but no books were found");
+            }
+
+            //STEP 5: Clean-up environment
+            rs.close();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
     private static void delete_a_manager(Statement stmt, BufferedReader br)
     {
         try
         {
-            String managers = "DELETE FROM library_manager where admin_number = \'"+ mag_id;
+            String managers = "DELETE FROM library_manager where admin_number = \'"+ mag_id+"\'";
             int result = updateSqlCommand(managers, stmt);
 
             if(result != 0)
@@ -279,7 +329,7 @@ public class JdbcDemo
 
             clear();
 
-            String managers = "DELETE FROM student where student_roll_number = \'"+ id;
+            String managers = "DELETE FROM student where student_roll_number = \'"+ id+"\'";
             int result = updateSqlCommand(managers, stmt);
 
             if(result != 0)
@@ -302,7 +352,7 @@ public class JdbcDemo
 
             clear();
 
-            String managers = "DELETE FROM book where book_id = \'"+ id;
+            String managers = "DELETE FROM book where book_id = \'"+ id+"\'";
             int result = updateSqlCommand(managers, stmt);
 
             if(result != 0)
@@ -494,12 +544,12 @@ public class JdbcDemo
     
     static void println(String s)
     {
-        System.out.println("                     "+s);
+        System.out.println("                               "+s);
     }
     
     static void print(String s)
     {
-        System.out.print("                      "+s);
+        System.out.print("                                 "+s);
     }
 
 }
