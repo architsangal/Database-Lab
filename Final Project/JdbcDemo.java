@@ -5,7 +5,7 @@ import java.sql.*;
 public class JdbcDemo
 {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://localhost/library?useSSL=false";
+    static final String DB_URL = "jdbc:mysql://localhost/library?allowPublicKeyRetrieval=true&useSSL=false";
     static final String USER = "user45";
     static final String PASS = "Password@45";
 
