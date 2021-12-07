@@ -390,7 +390,10 @@ public class JdbcDemo
                 String managers = "UPDATE book SET student_rno = \'"+ student_id +"\', admin_roll_number = \'"+mag_id+"\' where book_id = \'"+id+"\'";
                 int result = updateSqlCommand(managers, stmt);
 
-                if(result != 0)
+                managers = "UPDATE student SET book_id = \'"+ id +"\' where student_roll_number = \'"+student_id+"\'";
+                int result2 = updateSqlCommand(managers, stmt);
+
+                if(result != 0 && result2 != 0)
                     println("Book Issued!");
                 else
                     println("Something went wrong!");
@@ -409,12 +412,18 @@ public class JdbcDemo
             print("Enter the ID of the book: ");
             String id = br.readLine();
 
+            print("Enter the id of the student: ");
+            String student_id = br.readLine();
+
             clear();
 
             String managers = "UPDATE book SET student_rno = null, admin_roll_number = null where book_id = \'"+id+"\'";
             int result = updateSqlCommand(managers, stmt);
 
-            if(result != 0)
+            managers = "UPDATE student SET book_id = null where student_roll_number = \'"+student_id+"\'";
+            int result2 = updateSqlCommand(managers, stmt);
+
+            if(result != 0 && result2 != 0)
                 println("Thank you for returning the book!");
             else
                 println("Something went wrong!");
